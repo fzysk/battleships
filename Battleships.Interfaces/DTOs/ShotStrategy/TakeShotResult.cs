@@ -1,6 +1,6 @@
 ﻿namespace Battleships.Interfaces.DTOs.ShotStrategy
 {
-    public class ShotResult
+    public class TakeShotResult
     {
         public int X { get; init; }
         public int Y { get; init; }

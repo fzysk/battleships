@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Battleships.Interfaces\Battleships.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

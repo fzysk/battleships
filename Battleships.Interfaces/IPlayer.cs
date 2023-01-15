@@ -1,11 +1,15 @@
 ﻿using Battleships.Domain;
+using Battleships.Interfaces.DTOs.Player;
+using Battleships.Interfaces.DTOs.ShotStrategy;
 
 namespace Battleships.Interfaces
 {
     public interface IPlayer
     {
-        IEnumerable<IGameObject> GetGameObjects();
+        bool HasLost { get; }
 
-        (int X, int Y) MakeMove();
+        IEnumerable<IGameObject> GetGameObjects();
+        TakeShotResult TakeShot();
+        ReceiveShotResult ReceiveShot(ReceiveShotDto shotDto);
     }
 }

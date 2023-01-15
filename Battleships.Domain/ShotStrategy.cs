@@ -13,6 +13,6 @@ namespace Battleships.Domain
 
         protected GameParameters GameParameters { get; }
 
-        public abstract ShotResult TakeShot();
+        public abstract TakeShotResult TakeShot();
     }
 }

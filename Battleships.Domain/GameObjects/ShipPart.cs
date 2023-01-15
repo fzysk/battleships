@@ -1,8 +1,9 @@
 ﻿using Battleships.Domain.Enums;
+using Battleships.Interfaces;
 
 namespace Battleships.Domain.GameObjects
 {
-    internal class ShipPart : GameObject
+    internal class ShipPart : GameObject, IHittable
     {
         public ShipPart(int x, int y) : base(x, y)
         {

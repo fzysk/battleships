@@ -4,6 +4,6 @@ namespace Battleships.Interfaces
 {
     public interface IShotStrategy
     {       
-        ShotResult TakeShot();
+        TakeShotResult TakeShot();
     }
 }

@@ -13,6 +13,6 @@ namespace Battleships.Domain.ShotStrategies
             this.randomGenerator = randomGenerator;
         }
 
-        public override ShotResult TakeShot() => new ShotResult { X = randomGenerator.Next(GameParameters.BoardSize), Y = randomGenerator.Next(GameParameters.BoardSize) };
+        public override TakeShotResult TakeShot() => new TakeShotResult { X = randomGenerator.Next(GameParameters.BoardSize), Y = randomGenerator.Next(GameParameters.BoardSize) };
     }
 }

@@ -7,5 +7,7 @@
         public Destroyer(ShipPart[] shipParts) : base(DestroyerSize, shipParts)
         {
         }
+
+        public override string ToString() => nameof(Destroyer);
     }
 }
