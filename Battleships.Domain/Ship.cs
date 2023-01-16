@@ -2,9 +2,9 @@
 
 namespace Battleships.Domain
 {
-    internal abstract class Ship
+    public abstract class Ship
     {
-        public Ship(int size, ShipPart[] shipParts)
+        protected Ship(int size, ShipPart[] shipParts)
         {
             if (size <= 0)
             {
@@ -25,7 +25,7 @@ namespace Battleships.Domain
             ShipParts = shipParts;
         }
 
-        protected int Size { get; }
+        public int Size { get; }
         protected ShipPart[] ShipParts { get; }
 
         public bool IsSunk => ShipParts.All(part => part.Status == Enums.ShipPartStatus.Hit);

@@ -7,6 +7,7 @@ namespace Battleships.Interfaces
     public interface IPlayer
     {
         bool HasLost { get; }
+        bool IsHuman { get; }
 
         IEnumerable<IGameObject> GetGameObjects();
         TakeShotResult TakeShot();

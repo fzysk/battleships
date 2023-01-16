@@ -6,19 +6,22 @@ using Battleships.Interfaces.Enums;
 
 namespace Battleships.Domain.Player
 {
-    internal class Player : IPlayer
+    public class Player : IPlayer
     {
         private readonly List<Ship> ships;
         private readonly IShotStrategy shotStrategy;
 
-        public Player(List<Ship> ships, IShotStrategy shotStrategy)
+        public Player(List<Ship> ships, IShotStrategy shotStrategy, bool isHuman)
         {
             this.ships = ships;
             this.shotStrategy = shotStrategy;
+            
+            IsHuman = isHuman;
         }
 
+        public bool IsHuman { get; }
+        
         public bool HasLost => ships.All(ship => ship.IsSunk);
-
         public IEnumerable<IGameObject> GetGameObjects() => ships.SelectMany(ship => ship.GetGameObjects());
 
         public ReceiveShotResult ReceiveShot(ReceiveShotDto shotDto)
@@ -45,10 +48,10 @@ namespace Battleships.Domain.Player
                     shotStatus = ReceiveShotEnum.Sunk;
                 }
 
-                return new ReceiveShotResult { ShipName = ship.ToString(), ShotResult = shotStatus };
+                return new ReceiveShotResult { ShipName = ship.ToString(), ShotResult = shotStatus , X = shotDto.X, Y = shotDto.Y };
             }
 
-            return new ReceiveShotResult { ShotResult = ReceiveShotEnum.Miss };
+            return new ReceiveShotResult { ShotResult = ReceiveShotEnum.Miss, X = shotDto.X, Y = shotDto.Y };
         }
 
         public TakeShotResult TakeShot()

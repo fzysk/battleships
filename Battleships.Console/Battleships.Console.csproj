@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Battleships.Domain\Battleships.Domain.csproj" />
+    <ProjectReference Include="..\Battleships.Engine\Battleships.Engine.csproj" />
     <ProjectReference Include="..\Battleships.Interfaces\Battleships.Interfaces.csproj" />
   </ItemGroup>
 

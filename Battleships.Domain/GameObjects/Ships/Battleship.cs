@@ -1,8 +1,8 @@
 ﻿namespace Battleships.Domain.GameObjects.Ships
 {
-    internal class Battleship : Ship
+    public class Battleship : Ship
     {
-        internal const int BattleshipSize = 5;
+        private const int BattleshipSize = 5;
 
         public Battleship(ShipPart[] shipParts) : base(BattleshipSize, shipParts)
         {

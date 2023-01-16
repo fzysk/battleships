@@ -1,8 +1,8 @@
 ﻿namespace Battleships.Domain.GameObjects.Ships
 {
-    internal class Destroyer : Ship
+    public class Destroyer : Ship
     {
-        internal const int DestroyerSize = 4;
+        private const int DestroyerSize = 4;
 
         public Destroyer(ShipPart[] shipParts) : base(DestroyerSize, shipParts)
         {

@@ -2,9 +2,9 @@
 using Battleships.Interfaces.DTOs.Game;
 using Battleships.Interfaces.DTOs.ShotStrategy;
 
-namespace Battleships.Domain
+namespace Battleships.Engine
 {
-    internal abstract class ShotStrategy : IShotStrategy
+    public abstract class ShotStrategy : IShotStrategy
     {
         protected ShotStrategy(GameParameters gameParameters)
         {

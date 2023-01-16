@@ -2,9 +2,9 @@
 using Battleships.Interfaces.DTOs.Game;
 using Battleships.Interfaces.DTOs.ShotStrategy;
 
-namespace Battleships.Domain.ShotStrategies
+namespace Battleships.Engine.ShotStrategies
 {
-    internal class RandomShotStrategy : ShotStrategy
+    public class RandomShotStrategy : ShotStrategy
     {
         private IRandomGenerator randomGenerator;
 

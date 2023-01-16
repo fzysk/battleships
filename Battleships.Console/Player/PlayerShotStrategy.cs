@@ -1,14 +1,11 @@
 ﻿using Battleships.Interfaces;
 using Battleships.Interfaces.DTOs.Game;
 using Battleships.Interfaces.DTOs.ShotStrategy;
-using System.Text.RegularExpressions;
 
 namespace Battleships.Console.Player
 {
     internal class PlayerShotStrategy : IShotStrategy
     {
-        private static readonly Regex shotRegex = new Regex("([A-Z]+)([0-9]+)");
-
         private readonly GameParameters gameParameters;
 
         public PlayerShotStrategy(GameParameters gameParameters)
@@ -41,25 +38,18 @@ namespace Battleships.Console.Player
                 return false;
             }
 
-            var match = shotRegex.Match(input);
-
-            if (!match.Success)
+            try
+            {
+                (x, y) = ConsoleCoordinatesAdapter.FromConsoleCoordinates(input);
+            }
+            catch (CoordinatesCastException cce)
             {
                 return false;
             }
-
-            string letter = match.Captures.First().Value;
-            y = int.Parse(match.Captures.Last().Value);
 
             if (y >= gameParameters.BoardSize)
             {
                 return false;
-            }
-
-            // get letter coordinates
-            for (int i = letter.Length - 1; i >= 0; i--)
-            {
-                x += letter[i] - 'A' + (('Z' - 'A') * i);
             }
 
             if (x >= gameParameters.BoardSize)

@@ -2,7 +2,7 @@
 {
     public class GameObject : IGameObject
     {
-        public GameObject(int x, int y)
+        internal GameObject(int x, int y)
         {
             X = x;
             Y = y;

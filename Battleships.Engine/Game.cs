@@ -6,7 +6,7 @@ namespace Battleships.Engine
 {
     public class Game
     {
-        private event EventHandler<ReceiveShotEvent> ReceiveShotEvent;
+        public event EventHandler<ReceiveShotEvent> ReceiveShotEvent;
 
         private readonly IPlayer firstPlayer;
         private readonly IPlayer secondPlayer;
@@ -28,6 +28,11 @@ namespace Battleships.Engine
         }
 
         public bool HasEnded => firstPlayer.HasLost || secondPlayer.HasLost;
+
+        public void Prepare()
+        {
+
+        }
 
         public void Loop()
         {
