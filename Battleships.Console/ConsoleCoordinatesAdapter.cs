@@ -10,7 +10,7 @@ namespace Battleships.Console
         /// <summary>
         /// Columns are like Excel columns (e.g. A,B,...,Z,AA,AB,...)
         /// </summary>
-        private static readonly int CoordinatesBase = 'Z' - 'A';
+        private static readonly int CoordinatesBase = 'Z' - 'A' + 1;
         private static readonly Regex ShotRegex = new Regex("([A-Z]+)([0-9]+)");
 
         public static string ToConsoleCoordinates(int x, int y)
@@ -20,21 +20,36 @@ namespace Battleships.Console
                 throw new CoordinatesCastException();
             }
 
-            int multiplier = 0;
+            bool isAfterFirstLoop = false;
+
             var sb = new StringBuilder();
+            var stack = new Stack<char>();
 
             do
             {
-                multiplier = x / CoordinatesBase;
+                int lastDigit = x % CoordinatesBase;
 
-                int c = x - multiplier * CoordinatesBase;
-                x -= multiplier * CoordinatesBase;
+                if (x < CoordinatesBase && isAfterFirstLoop)
+                {
+                    // check for powers of coordinates base
+                    // at last loop (x < coordinates base) we end up with x == 1
+                    // however, 1 is B in our notation, but we expect it to be A
+                    // and we don't want to do it for x = [0-25] (hence isAfterFirstLoop flag)
+                    lastDigit--;
+                }
 
-                sb.Append((char)(c + 'A'));
-            } 
-            while (multiplier != 0);
+                // move to next "number"
+                x /= CoordinatesBase;
 
+                stack.Push((char)(lastDigit + 'A'));
+
+                isAfterFirstLoop = true;
+            }
+            while (x > 0);
+
+            sb.AppendJoin("", stack);
             sb.Append(y + 1);
+
             return sb.ToString();
         }
 
