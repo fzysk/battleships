@@ -22,8 +22,8 @@ var gameParameters = new GameParameters
 var computerShips = new List<Ship>
 {
     new Battleship(Enumerable.Range(1, 5).Select(i => new ShipPart(4, i)).ToArray()),
-    new Destroyer(Enumerable.Range(2, 4).Select(i => new ShipPart(i, 5)).ToArray()),
-    new Destroyer(Enumerable.Range(3, 4).Select(i => new ShipPart(i, 1)).ToArray()),
+    new Destroyer(Enumerable.Range(2, 4).Select(i => new ShipPart(i, 7)).ToArray()),
+    new Destroyer(Enumerable.Range(3, 4).Select(i => new ShipPart(i, 0)).ToArray()),
 };
 var computerPlayer = new Player(computerShips, new RandomShotStrategy(new RandomGenerator(), gameParameters), isHuman: false);
 

@@ -34,26 +34,42 @@ namespace Battleships.Console
 
         public void Play()
         {
+            // show starting board
             RefreshView();
+
+            // start the game
             game.Loop();
+
+            // game ends here, show the winner
+            bool isHumanWinner = players.First(player => !player.HasLost).IsHuman;
+
+            System.Console.WriteLine();
+            System.Console.WriteLine("The game ends!");
+            System.Console.WriteLine($"The winner is {(isHumanWinner ? "player" : "CPU")}!");
         }
 
         private void HandleShotFired(object? sender, ReceiveShotEvent e)
         {
+            int sleepTime;
+
             if (e.ShootingPlayer.IsHuman)
             {
                 cpuReceiveShotEvents.Add(e);
+                sleepTime = 2000;   // more time after shot for human to catch results
             }
             else
             {
                 playerReceiveShotEvents.Add(e);
+                sleepTime = 1000;
             }
 
             RefreshView();
-
+            
             System.Console.WriteLine();
             System.Console.WriteLine($"{(e.ShootingPlayer.IsHuman ? "Player" : "CPU")} chose {ConsoleCoordinatesAdapter.ToConsoleCoordinates(e.Result.X, e.Result.Y)}.");
-            System.Console.WriteLine($"This resulted in {e.Result.ShotResult}{(e.Result.ShotResult != Interfaces.Enums.ReceiveShotEnum.Miss ? $"of {e.Result.ShipName}" : string.Empty)}");
+            System.Console.WriteLine($"This resulted in {e.Result.ShotResult}{(e.Result.ShotResult != Interfaces.Enums.ReceiveShotEnum.Miss ? $" of {e.Result.ShipName}" : string.Empty)}");
+
+            Thread.Sleep(sleepTime);
         }
 
         private void RefreshView()

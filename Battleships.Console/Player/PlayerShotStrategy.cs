@@ -15,6 +15,7 @@ namespace Battleships.Console.Player
 
         public TakeShotResult TakeShot()
         {
+            System.Console.WriteLine();
             System.Console.WriteLine("Please write shot coordinates (e.g. A1): ");
             string input = System.Console.ReadLine();
 
