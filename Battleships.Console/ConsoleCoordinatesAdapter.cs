@@ -1,9 +1,11 @@
-﻿using System.Text;
+﻿using System.Runtime.CompilerServices;
+using System.Text;
 using System.Text.RegularExpressions;
 
+[assembly: InternalsVisibleTo("Battleships.Console.Tests")]
 namespace Battleships.Console
 {
-    internal class ConsoleCoordinatesAdapter
+    internal static class ConsoleCoordinatesAdapter
     {
         /// <summary>
         /// Columns are like Excel columns (e.g. A,B,...,Z,AA,AB,...)
