@@ -32,7 +32,7 @@ namespace Battleships.Console
             } 
             while (multiplier != 0);
 
-            sb.Append(y);
+            sb.Append(y + 1);
             return sb.ToString();
         }
 
@@ -48,7 +48,7 @@ namespace Battleships.Console
             if (match.Success)
             {
                 string letters = match.Groups[1].Value;
-                int y = int.Parse(match.Groups[2].Value) - 1;
+                int y = int.Parse(match.Groups[2].Value);
 
                 int x = 0;
                 // get letter coordinates
@@ -57,7 +57,7 @@ namespace Battleships.Console
                     x += letters[i] - 'A' + (CoordinatesBase * i);
                 }
 
-                return (x, y);
+                return (x, y - 1);
             }
 
             throw new CoordinatesCastException();

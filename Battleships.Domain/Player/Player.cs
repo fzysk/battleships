@@ -45,7 +45,7 @@ namespace Battleships.Domain.Player
                 }
                 else
                 {
-                    shotStatus = ReceiveShotEnum.Sunk;
+                    shotStatus = ReceiveShotEnum.Hit;
                 }
 
                 return new ReceiveShotResult { ShipName = ship.ToString(), ShotResult = shotStatus , X = shotDto.X, Y = shotDto.Y };

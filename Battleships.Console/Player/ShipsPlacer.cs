@@ -30,7 +30,7 @@ namespace Battleships.Console.Player
                 var shipParts = new List<ShipPart>();
                 foreach (var coordinates in input.Split(','))
                 {
-                    (int x, int y) = ConsoleCoordinatesAdapter.FromConsoleCoordinates(input);
+                    (int x, int y) = ConsoleCoordinatesAdapter.FromConsoleCoordinates(coordinates);
                     shipParts.Add(new ShipPart(x, y));
                 }
 

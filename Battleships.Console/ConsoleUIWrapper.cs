@@ -42,11 +42,11 @@ namespace Battleships.Console
         {
             if (e.ShootingPlayer.IsHuman)
             {
-                playerReceiveShotEvents.Add(e);
+                cpuReceiveShotEvents.Add(e);
             }
             else
             {
-                cpuReceiveShotEvents.Add(e);
+                playerReceiveShotEvents.Add(e);
             }
 
             RefreshView();
@@ -69,14 +69,14 @@ namespace Battleships.Console
 
         private void PrintHeaderRow()
         {
-            string columns = string.Join(ColumnSeparator, Enumerable.Range(0, gameParameters.BoardSize).Select(i => (char)('A' + i)));
+            string columns = string.Join(ColumnSeparator, Enumerable.Range(1, gameParameters.BoardSize));
             System.Console.WriteLine($"  {columns}{BoardSeparator}{columns}");
         }
 
         private void PrintSingleRow(int row)
         {
             var sb = new StringBuilder();
-            sb.Append($"{row} "); // show row number on left
+            sb.Append($"{(char)('A' + row)} "); // show row letter on left
 
             // draw player
             var human = players.First(p => p.IsHuman);
@@ -113,9 +113,7 @@ namespace Battleships.Console
 
             sb.Append(BoardSeparator);
 
-            // draw cpu
-            var cpuPlayer = players.First(p => !p.IsHuman);
-
+            // draw cpu board
             for (int column = 0; column < gameParameters.BoardSize; column++)
             {
                 var shotEvent = cpuReceiveShotEvents.FirstOrDefault(e => e.Result.X == row && e.Result.Y == column);
