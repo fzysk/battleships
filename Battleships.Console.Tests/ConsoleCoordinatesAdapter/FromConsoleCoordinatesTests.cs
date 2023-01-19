@@ -56,7 +56,7 @@
             yield return new object[] { "A1", 0, 0 };
             yield return new object[] { "B2", 1, 1 };
             yield return new object[] { "G10", 6, 9 };
-            yield return new object[] { "X1", 23, 1 };
+            yield return new object[] { "X1", 23, 0 };
             yield return new object[] { "Z13", 25, 12 };
             yield return new object[] { "AA100", 26, 99 };
             yield return new object[] { "BA1", 52, 0 };

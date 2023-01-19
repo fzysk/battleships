@@ -69,9 +69,16 @@ namespace Battleships.Console
 
                 int x = 0;
                 // get letter coordinates
-                for (int i = letters.Length - 1; i >= 0; i--)
+                for (int i = 0; i < letters.Length; i++)
                 {
-                    x += letters[i] - 'A' + (CoordinatesBase * i);
+                    int modifier = 0;
+                    if (i == 0 && i != letters.Length - 1)
+                    {
+                        modifier = 1;
+                    }
+
+                    x += (int)((letters[i] - 'A' + modifier) * Math.Pow(CoordinatesBase, letters.Length - i - 1));
+                    
                 }
 
                 return (x, y - 1);
