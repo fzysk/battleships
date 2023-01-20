@@ -1,4 +1,4 @@
-﻿namespace Battleships.Domain.Enums
+﻿namespace Battleships.Interfaces.Enums
 {
     public enum ShipPartStatus
     {

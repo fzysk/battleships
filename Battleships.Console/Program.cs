@@ -1,11 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Battleships.Console;
+﻿using Battleships.Console;
 using Battleships.Console.Player;
-using Battleships.Domain;
-using Battleships.Domain.GameObjects;
-using Battleships.Domain.GameObjects.Ships;
-using Battleships.Domain.Player;
+using Battleships.Domain.Players;
+using Battleships.Domain.Ships.Factories;
 using Battleships.Engine;
+using Battleships.Engine.Ship;
 using Battleships.Engine.ShotStrategies;
 using Battleships.Interfaces;
 using Battleships.Interfaces.DTOs.Game;
@@ -18,14 +16,12 @@ var gameParameters = new GameParameters
     BoardSize = 10,
 };
 
-// enchancement: ships factory/generator for computer player
-var computerShips = new List<Ship>
-{
-    new Battleship(Enumerable.Range(1, 5).Select(i => new ShipPart(4, i)).ToArray()),
-    new Destroyer(Enumerable.Range(2, 4).Select(i => new ShipPart(i, 7)).ToArray()),
-    new Destroyer(Enumerable.Range(3, 4).Select(i => new ShipPart(i, 0)).ToArray()),
-};
-var computerPlayer = new Player(computerShips, new RandomShotStrategy(new RandomGenerator(), gameParameters), isHuman: false);
+var randomGenerator = new RandomGenerator();
+var shipFactory = new ShipFactory();
+
+var shipGenerator = new ShipGenerator(gameParameters, randomGenerator, shipFactory);
+
+var computerPlayer = new Player(shipGenerator.Generate().ToList(), new RandomShotStrategy(new RandomGenerator(), gameParameters), isHuman: false);
 
 var playerShips = ShipsPlacer.GetShips(gameParameters);
 var humanPlayer = new Player(playerShips, new PlayerShotStrategy(gameParameters), isHuman: true);

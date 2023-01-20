@@ -1,8 +1,9 @@
-﻿using Battleships.Domain.GameObjects;
+﻿using Battleships.Interfaces.Enums;
+using Battleships.Interfaces.Ships;
 
-namespace Battleships.Domain
+namespace Battleships.Domain.Ships
 {
-    public abstract class Ship
+    internal abstract class Ship : IShip
     {
         protected Ship(int size, ShipPart[] shipParts)
         {
@@ -19,7 +20,7 @@ namespace Battleships.Domain
             if (shipParts.Length <= 0 && shipParts.Length != size)
             {
                 throw new ArgumentException($"Invalid ship parts count ({shipParts.Length})");
-            } 
+            }
 
             Size = size;
             ShipParts = shipParts;
@@ -28,7 +29,7 @@ namespace Battleships.Domain
         public int Size { get; }
         protected ShipPart[] ShipParts { get; }
 
-        public bool IsSunk => ShipParts.All(part => part.Status == Enums.ShipPartStatus.Hit);
+        public bool IsSunk => ShipParts.All(part => part.Status == ShipPartStatus.Hit);
 
         public IEnumerable<IGameObject> GetGameObjects() => ShipParts;
     }

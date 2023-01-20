@@ -1,13 +1,11 @@
-﻿using Battleships.Domain;
-using Battleships.Domain.GameObjects;
-using Battleships.Domain.GameObjects.Ships;
-using Battleships.Interfaces.DTOs.Game;
+﻿using Battleships.Interfaces.DTOs.Game;
+using Battleships.Interfaces.Ships;
 
 namespace Battleships.Console.Player
 {
     internal static class ShipsPlacer
     {
-        public static List<Ship> GetShips(GameParameters gameParameters)
+        public static List<IShip> GetShips(GameParameters gameParameters)
         {
             var ships = new List<Ship>();
 

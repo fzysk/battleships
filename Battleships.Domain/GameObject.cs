@@ -1,6 +1,6 @@
 ﻿namespace Battleships.Domain
 {
-    public class GameObject : IGameObject
+    internal class GameObject : IGameObject
     {
         internal GameObject(int x, int y)
         {

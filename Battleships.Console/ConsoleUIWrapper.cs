@@ -1,8 +1,9 @@
-﻿using Battleships.Domain.GameObjects;
-using Battleships.Engine;
+﻿using Battleships.Engine;
 using Battleships.Engine.Events;
 using Battleships.Interfaces;
 using Battleships.Interfaces.DTOs.Game;
+using Battleships.Interfaces.Enums;
+using Battleships.Interfaces.Ships;
 using System.Text;
 
 namespace Battleships.Console
@@ -103,14 +104,14 @@ namespace Battleships.Console
                 var shipPart = objects.FirstOrDefault(obj => obj.X == row && obj.Y == column);
                 var shotEvent = playerReceiveShotEvents.FirstOrDefault(e => e.Result.X == row && e.Result.Y == column);
 
-                if (shipPart != null && shipPart is ShipPart sp)
+                if (shipPart != null && shipPart is IShipStatus shipStatus)
                 {
-                    switch (sp.Status)
+                    switch (shipStatus.Status)
                     {
-                        case Domain.Enums.ShipPartStatus.Healthy:
+                        case ShipPartStatus.Healthy:
                             sb.Append('O');
                             break;
-                        case Domain.Enums.ShipPartStatus.Hit:
+                        case ShipPartStatus.Hit:
                             sb.Append('X');
                             break;
                     }
@@ -138,13 +139,13 @@ namespace Battleships.Console
                 {
                     switch (shotEvent.Result.ShotResult)
                     {
-                        case Interfaces.Enums.ReceiveShotEnum.Miss:
+                        case ReceiveShotEnum.Miss:
                             sb.Append('*');
                             break;
-                        case Interfaces.Enums.ReceiveShotEnum.Hit:
+                        case ReceiveShotEnum.Hit:
                             sb.Append('X');
                             break;
-                        case Interfaces.Enums.ReceiveShotEnum.Sunk:
+                        case ReceiveShotEnum.Sunk:
                             sb.Append('!');
                             break;
                     }

@@ -1,4 +1,4 @@
-﻿namespace Battleships.Interfaces
+﻿namespace Battleships.Interfaces.Ships
 {
     public interface IHittable
     {
