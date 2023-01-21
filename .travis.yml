@@ -1,0 +1,9 @@
+language: csharp
+mono: none
+dist: xenial
+dotnet: 6.0.13
+install:
+  - dotnet restore
+script:
+  - dotnet build
+  - dotnet test Battleships.Console.Tests/Battleships.Console.Tests.csproj
