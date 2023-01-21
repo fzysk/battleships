@@ -17,7 +17,7 @@ namespace Battleships.Domain.Ships
                 throw new ArgumentNullException(nameof(shipParts));
             }
 
-            if (shipParts.Length <= 0 && shipParts.Length != size)
+            if (shipParts.Length <= 0 || shipParts.Length != size)
             {
                 throw new ArgumentException($"Invalid ship parts count ({shipParts.Length})");
             }
