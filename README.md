@@ -1,3 +1,4 @@
+[![Build Status](https://app.travis-ci.com/fzysk/battleships.svg?branch=main)](https://app.travis-ci.com/fzysk/battleships)
 # Battleships
 Simple console app to play battleships.
 
