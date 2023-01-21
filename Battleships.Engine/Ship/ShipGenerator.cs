@@ -43,13 +43,12 @@ namespace Battleships.Engine.Ship
 
                     bool horizontal = generator.Next() % 2 == 0;
 
-                    IEnumerable<int> nextValues = GenerateShipLineCoordinates(horizontal ? x : y)
-                        .Take(shipPartsCount)
-                        .OrderBy(i => i);
+                    IEnumerable<int> nextValues = GenerateShipLineCoordinates(horizontal ? y : x)
+                        .Take(shipPartsCount);
 
                     foreach (var value in nextValues)
                     {
-                        factory.OnCoordinates(horizontal ? x : value, horizontal ? y : value);
+                        factory.OnCoordinates(horizontal ? x : value, horizontal ? value : y);
                     }
 
                     var ship = factory.Create();
@@ -70,10 +69,27 @@ namespace Battleships.Engine.Ship
         {
             yield return value;
 
+            int step = 1;
             while (true)
             {
-                if (value - 1 >= 0) yield return value - 1;
-                else if (value + 1 < gameParameters.BoardSize) yield return value + 1;
+                bool hasGenerated = false;
+
+                if (value - step >= 0)
+                {
+                    yield return value - step;
+                    hasGenerated = true;
+                }
+
+                if (value + step < gameParameters.BoardSize)
+                {
+                    yield return value + step;
+                    hasGenerated = true;
+                }
+
+                if (hasGenerated)
+                {
+                    step++;
+                }
                 else break;
             }
         }
