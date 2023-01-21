@@ -8,5 +8,6 @@ namespace Battleships.Interfaces.Ships
         bool IsSunk { get; }
 
         IEnumerable<IGameObject> GetGameObjects();
+        bool IsIntersectingWithOtherShips(List<IShip> ships);
     }
 }

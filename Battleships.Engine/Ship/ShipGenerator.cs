@@ -23,17 +23,17 @@ namespace Battleships.Engine.Ship
 
         public IEnumerable<IShip> Generate()
         {
-            // enchancement: get rid of magic numbers
-            var battleships = GenerateShips(gameParameters.BattleshipsCount, 5, shipFactory.BuildBattleship());
-            var destroyers = GenerateShips(gameParameters.DestroyersCount, 4, shipFactory.BuildDestroyer());
-
-            return battleships.Concat(destroyers);
-        }
-
-        private IEnumerable<IShip> GenerateShips(int count, int shipPartsCount, ISpecificShipFactory factory) 
-        {
             var ships = new List<IShip>();
 
+            // enchancement: get rid of magic numbers
+            GenerateShips(gameParameters.BattleshipsCount, 5, shipFactory.BuildBattleship(), ships);
+            GenerateShips(gameParameters.DestroyersCount, 4, shipFactory.BuildDestroyer(), ships);
+
+            return ships;
+        }
+
+        private void GenerateShips(int count, int shipPartsCount, ISpecificShipFactory factory, List<IShip> alreadyCreatedShips) 
+        {
             for (int i = 0; i < count; i++)
             {
                 while (true)
@@ -54,21 +54,13 @@ namespace Battleships.Engine.Ship
 
                     var ship = factory.Create();
 
-                    if (!IsShipIntersecting(ship, ships))
+                    if (!ship.IsIntersectingWithOtherShips(alreadyCreatedShips))
                     {
-                        ships.Add(ship);
+                        alreadyCreatedShips.Add(ship);
                         break;
                     } 
                 }
             }
-
-            return ships;
-        }
-
-        private bool IsShipIntersecting(IShip ship, List<IShip> ships)
-        {
-            return ship.GetGameObjects().Any(part => 
-                ships.SelectMany(s => s.GetGameObjects()).Any(otherPart => otherPart.X == part.X && otherPart.Y == part.Y));
         }
 
         /// <summary>

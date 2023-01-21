@@ -2,6 +2,8 @@
 {
     public interface ISpecificShipFactory
     {
+        string ShipName { get; }
+
         ISpecificShipFactory OnCoordinates(int x, int y);
         IShip Create();
     }

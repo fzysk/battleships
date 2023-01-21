@@ -8,6 +8,8 @@ namespace Battleships.Domain.Ships.Factories
     {
         private readonly List<ShipPart> parts = new List<ShipPart>();
 
+        public string ShipName => nameof(Destroyer);
+
         public IShip Create()
         {
             return new Destroyer(parts.ToArray());

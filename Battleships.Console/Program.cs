@@ -20,11 +20,10 @@ var randomGenerator = new RandomGenerator();
 var shipFactory = new ShipFactory();
 
 var shipGenerator = new ShipGenerator(gameParameters, randomGenerator, shipFactory);
-
 var computerPlayer = new Player(shipGenerator.Generate().ToList(), new RandomShotStrategy(new RandomGenerator(), gameParameters), isHuman: false);
 
-var playerShips = ShipsPlacer.GetShips(gameParameters);
-var humanPlayer = new Player(playerShips, new PlayerShotStrategy(gameParameters), isHuman: true);
+var playerShips = ShipsPlacer.GetShips(gameParameters, shipFactory);
+var humanPlayer = new Player(playerShips.ToList(), new PlayerShotStrategy(gameParameters), isHuman: true);
 
 // shuffle players
 var players = new List<IPlayer> { humanPlayer, computerPlayer }.OrderBy(x => new Random().Next()).ToList();

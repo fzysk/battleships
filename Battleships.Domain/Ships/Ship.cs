@@ -32,5 +32,8 @@ namespace Battleships.Domain.Ships
         public bool IsSunk => ShipParts.All(part => part.Status == ShipPartStatus.Hit);
 
         public IEnumerable<IGameObject> GetGameObjects() => ShipParts;
+
+        public bool IsIntersectingWithOtherShips(List<IShip> ships) =>
+            GetGameObjects().Any(part => ships.SelectMany(s => s.GetGameObjects()).Any(otherPart => otherPart.X == part.X && otherPart.Y == part.Y));
     }
 }
