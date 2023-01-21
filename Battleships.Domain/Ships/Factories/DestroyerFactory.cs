@@ -12,7 +12,12 @@ namespace Battleships.Domain.Ships.Factories
 
         public IShip Create()
         {
-            return new Destroyer(parts.ToArray());
+            IShip ship = new Destroyer(parts.ToArray());
+
+            // prepare factory for building new ship
+            parts.Clear();
+
+            return ship;
         }
 
         public ISpecificShipFactory OnCoordinates(int x, int y)

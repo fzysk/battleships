@@ -11,7 +11,7 @@ namespace Battleships.Console.Player
             var ships = new List<IShip>();
 
             GetShips(gameParameters.BattleshipsCount, shipFactory.BuildBattleship(), ships);
-            GetShips(gameParameters.DestroyersCount, shipFactory.BuildBattleship(), ships);
+            GetShips(gameParameters.DestroyersCount, shipFactory.BuildDestroyer(), ships);
 
             return ships;
         }
@@ -28,7 +28,7 @@ namespace Battleships.Console.Player
                 {
                     string input = System.Console.ReadLine();
 
-                    if (!string.IsNullOrEmpty(input))
+                    if (string.IsNullOrEmpty(input))
                     {
                         System.Console.WriteLine("Please, write some coordinates here:");
                         continue;
