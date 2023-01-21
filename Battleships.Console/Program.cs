@@ -8,6 +8,10 @@ using Battleships.Engine.ShotStrategies;
 using Battleships.Interfaces;
 using Battleships.Interfaces.DTOs.Game;
 
+Console.Clear();
+Console.WriteLine("Welcome to Battleships game!");
+Console.WriteLine();
+
 // enchancement: store it in some app settings
 var gameParameters = new GameParameters
 {
