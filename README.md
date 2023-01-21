@@ -8,6 +8,6 @@ After cloning the repository, please enter *Battleships.Console* folder in conso
 dotnet run
 ```
 
-Please ensure you have .NET CLI installed in version enabling to run .NET6 projects.
+Please ensure you have .NET CLI installed in version that will allow you to run .NET6 projects.
 
 Optionally, you can build and run the project from Visual Studio 2022, by opening the solution file (*Battleships.sln*) in the IDE and clicking Ctrl+F5 (start without debugging).
